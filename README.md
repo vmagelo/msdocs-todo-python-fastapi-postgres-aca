@@ -13,7 +13,7 @@ products:
 - azure-container-registry
 - azure-monitor
 - azure-pipelines
-urlFragment: todo-python-mongo-aca
+urlFragment: msdocs-todo-python-fastapi-postgres-aca
 name: Containerized React Web App with Python API and MongoDB on Azure
 description: A complete ToDo app with Python FastAPI and Azure Cosmos API for MongoDB for storage. Uses Azure Developer CLI (azd) to build, deploy, and monitor
 ---
@@ -22,7 +22,7 @@ description: A complete ToDo app with Python FastAPI and Azure Cosmos API for Mo
 # Containerized React Web App with Python API and MongoDB on Azure
 
 [![Open in GitHub Codespaces](https://img.shields.io/static/v1?style=for-the-badge&label=GitHub+Codespaces&message=Open&color=brightgreen&logo=github)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=482996107&machine=standardLinux32gb&devcontainer_path=.devcontainer%2Fdevcontainer.json&location=WestUs2)
-[![Open in Remote - Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Remote%20-%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/azure-samples/todo-python-mongo-aca)
+[![Open in Remote - Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Remote%20-%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/azure-samples/msdocs-todo-python-fastapi-postgres-aca)
 
 A blueprint for getting a React web app with Python (FastAPI) API and a MongoDB database running on Azure. The frontend (a ToDo web app) which can be removed and replaced with your own application code. Add your own source code and leverage the Infrastructure as Code assets (written in Bicep) to get up and running quickly.
 
@@ -43,7 +43,7 @@ The following prerequisites are required to use this application. Please ensure 
 - [Docker](https://docs.docker.com/get-docker/)
 
 ### Quickstart
-To learn how to get started with any template, follow the steps in [this quickstart](https://learn.microsoft.com/azure/developer/azure-developer-cli/get-started?tabs=localinstall&pivots=programming-language-python) with this template(`Azure-Samples/todo-python-mongo-aca`).
+To learn how to get started with any template, follow the steps in [this quickstart](https://learn.microsoft.com/azure/developer/azure-developer-cli/get-started?tabs=localinstall&pivots=programming-language-python) with this template(`Azure-Samples/msdocs-todo-python-fastapi-postgres-aca`).
 
 This quickstart will show you how to authenticate on Azure, initialize using a template, provision infrastructure and deploy code on Azure via the following commands:
 

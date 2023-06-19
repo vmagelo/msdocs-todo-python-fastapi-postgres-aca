@@ -20,6 +20,8 @@ param containerAppsEnvironmentName string = ''
 param containerRegistryName string = ''
 param cosmosAccountName string = ''
 param cosmosDatabaseName string = ''
+param postgresAccountName string = ''
+param postgresDatabaseName string = ''
 param keyVaultName string = ''
 param logAnalyticsName string = ''
 param resourceGroupName string = ''
@@ -36,6 +38,10 @@ param principalId string = ''
 
 @description('The base URL used by the web service for sending API requests')
 param webApiBaseUrl string = ''
+
+@secure()
+@description('PostgreSQL Server administrator password')
+param postgresPassword string
 
 var abbrs = loadJsonContent('./abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
@@ -113,6 +119,21 @@ module cosmos './app/db.bicep' = {
   }
 }
 
+// The application database (Postgres)
+module postgres './app/db2.bicep' = {
+  name: 'postgresServer'
+  scope: rg
+  params: {
+    accountName: !empty(postgresAccountName) ? postgresAccountName : '${abbrs.dBforPostgreSQLServers}${resourceToken}'
+    databaseName: postgresDatabaseName
+    adminName: 'demoadmin'
+    postgresPassword: postgresPassword
+    location: location
+    tags: tags
+    keyVaultName: keyVault.outputs.name
+  }
+}
+
 // Store secrets in a keyvault
 module keyVault './core/security/keyvault.bicep' = {
   name: 'keyvault'
@@ -124,6 +145,7 @@ module keyVault './core/security/keyvault.bicep' = {
     principalId: principalId
   }
 }
+
 
 // Monitor application with Azure Monitor
 module monitoring './core/monitor/monitoring.bicep' = {
@@ -168,6 +190,10 @@ module apimApi './app/apim-api.bicep' = if (useAPIM) {
 // Data outputs
 output AZURE_COSMOS_CONNECTION_STRING_KEY string = cosmos.outputs.connectionStringKey
 output AZURE_COSMOS_DATABASE_NAME string = cosmos.outputs.databaseName
+output AZURE_POSTGRESQL_CONNECTION_STRING string = postgres.outputs.connectionString
+output AZURE_POSTGRESQL_DOMAIN_NAME string = postgres.outputs.endpoint
+output AZURE_POSTGRESQL_DATABASE_NAME string = postgres.outputs.datbaseName
+output AZURE_POSTGRESQL_DATABASE_USERNAME string = postgres.outputs.adminLogin
 
 // App outputs
 output API_CORS_ACA_URL string = corsAcaUrl

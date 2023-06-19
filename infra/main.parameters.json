@@ -22,6 +22,9 @@
     },
     "useAPIM": {
       "value": "${USE_APIM=false}"
+    },
+    "postgresPassword": {
+      "value": "$(secretOrRandomPassword ${AZURE_KEY_VAULT_NAME} POSTGRESPASSWORD)"
     }
   }
 }

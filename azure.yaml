@@ -1,8 +1,8 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
 
-name: todo-python-mongo-aca
+name: msdocs-todo-python-fastapi-postgres-aca
 metadata:
-  template: todo-python-mongo-aca@0.0.1-beta
+  template: msdocs-todo-python-fastapi-postgres-aca@0.0.1-beta
 services:
   web:
     project: ./src/web

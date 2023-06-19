@@ -1,5 +1,6 @@
 [tool.poetry]
 name = "todo"
+authors = ["msdocs"]
 version = "0.1.0"
 description = "Simple Todo API"
 license = "MIT"
@@ -13,6 +14,7 @@ fastapi = "*"
 uvicorn = "*"
 beanie = "*"
 python-dotenv = "*"
+sqlmodel = "^0.0.8"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"

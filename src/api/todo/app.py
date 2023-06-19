@@ -1,6 +1,7 @@
 import motor
 from azure.monitor.opentelemetry.exporter import AzureMonitorTraceExporter
 from beanie import init_beanie
+from sqlmodel import SQLModel, create_engine
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
@@ -40,7 +41,12 @@ def originList():
     
 from .models import Settings, __beanie_models__
 
+from . import models2
+from .models2 import Settings2
+
 settings = Settings()
+settings2 = Settings2()
+
 app = FastAPI(
     description="Simple Todo API",
     version="2.0.0",
@@ -78,3 +84,7 @@ async def startup_event():
         database=client[settings.AZURE_COSMOS_DATABASE_NAME],
         document_models=__beanie_models__,
     )
+    # Create an engine for PostgreSQL database
+    engine = create_engine(settings.AZURE_POSTGRES_CONNECTION_STRING)
+    SQLModel.metadata.create_all(engine)
+
